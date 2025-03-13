@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "kSC2dIRHciQC7jDOxjGF/AXC5n13sDjCvSTYnXZFsog=",
+  "Source": "TaskManagerBackendSmartTalent",
+  "BasePath": "_content/TaskManagerBackendSmartTalent",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

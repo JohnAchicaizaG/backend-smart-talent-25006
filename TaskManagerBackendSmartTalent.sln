@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TaskManagerBackendSmartTalent", "TaskManagerBackendSmartTalent.csproj", "{47C8CA43-742D-F972-8F76-95CFA5637A72}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47C8CA43-742D-F972-8F76-95CFA5637A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47C8CA43-742D-F972-8F76-95CFA5637A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47C8CA43-742D-F972-8F76-95CFA5637A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47C8CA43-742D-F972-8F76-95CFA5637A72}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F99428FC-8625-4F20-86F7-34FE809E6AA2}
+	EndGlobalSection
+EndGlobal
