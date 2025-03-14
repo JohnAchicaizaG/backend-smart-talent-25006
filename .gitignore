@@ -1,0 +1,45 @@
+# Archivos generados por compilación
+bin/
+obj/
+publish/
+out/
+
+# Dependencias de NuGet
+*.nupkg
+packages/
+project.lock.json
+
+# Configuración de usuario y entorno
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Archivos de VS Code
+.vscode/
+
+# Archivos de Rider y Resharper
+.idea/
+*.sln.iml
+
+# Archivos de depuración
+*.pdb
+*.ilk
+*.exp
+*.dbg
+*.log
+
+# Archivos de configuración de Docker (si usas Docker)
+.dockerignore
+
+# Cache de NuGet
+.nuget/
+
+# Configuración local de SQL Server
+*.mdf
+*.ldf
+
+
+# Archivos de pruebas
+TestResults/
+coverage/
