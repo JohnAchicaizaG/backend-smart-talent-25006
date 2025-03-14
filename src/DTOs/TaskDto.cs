@@ -2,7 +2,7 @@
 namespace TaskManagerBackendSmartTalent.src.DTOs
 {
     /// <summary>
-    /// DTO (Data Transfer Object) para representar una tarea en las solicitudes y respuestas de la API.
+    /// Representa una tarea en las solicitudes y respuestas de la API.
     /// </summary>
     public class TaskDto
     {

@@ -11,46 +11,41 @@ namespace TaskManagerBackendSmartTalent.Controllers
     {
         private readonly TaskService _taskService;
 
-        /// <summary>
-        /// Constructor del controlador que recibe el servicio de tareas.
-        /// </summary>
-        /// <param name="taskService">Instancia de TaskService</param>
         public TaskController(TaskService taskService)
         {
             _taskService = taskService;
         }
 
         /// <summary>
-        /// Obtiene todas las tareas registradas.
+        /// Obtiene todas las tareas.
         /// </summary>
-        /// <returns>Lista de tareas</returns>
         [HttpGet]
-        public async Task<IActionResult> GetAllTasks() => Ok(await _taskService.GetAllTasksAsync());
+        public async Task<IActionResult> GetAllTasks()
+        {
+            var tasks = await _taskService.GetAllTasksAsync();
+            return Ok(new ApiResponse<IEnumerable<TaskEntity>>(tasks));
+        }
 
         /// <summary>
-        /// Obtiene una tarea específica por su ID.
+        /// Obtiene una tarea por ID.
         /// </summary>
-        /// <param name="id">Identificador de la tarea</param>
-        /// <returns>Tarea correspondiente al ID</returns>
         [HttpGet("{id}")]
         public async Task<IActionResult> GetTaskById(int id)
         {
             var task = await _taskService.GetTaskByIdAsync(id);
-            return task == null ? NotFound() : Ok(task);
+            return task == null
+                ? NotFound(ApiResponse<string>.Fail("Tarea no encontrada", 404))
+                : Ok(new ApiResponse<TaskEntity>(task));
         }
 
         /// <summary>
         /// Crea una nueva tarea.
         /// </summary>
-        /// <param name="taskDto">Datos de la nueva tarea</param>
-        /// <returns>La tarea creada</returns>
         [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] TaskDto? taskDto)
+        public async Task<IActionResult> CreateTask([FromBody] TaskDto taskDto)
         {
             if (taskDto == null || string.IsNullOrEmpty(taskDto.Title))
-            {
-                return BadRequest("The title is required");
-            }
+                return BadRequest(ApiResponse<string>.Fail("El título es obligatorio"));
 
             var newTask = new TaskEntity
             {
@@ -60,36 +55,40 @@ namespace TaskManagerBackendSmartTalent.Controllers
             };
 
             var createdTask = await _taskService.CreateTaskAsync(newTask);
-            return CreatedAtAction(nameof(GetTaskById), new { id = createdTask.Id }, createdTask);
+            return CreatedAtAction(nameof(GetTaskById), new { id = createdTask.Id },
+                new ApiResponse<TaskEntity>(createdTask, "Tarea creada exitosamente", 201));
         }
 
         /// <summary>
         /// Actualiza una tarea existente.
         /// </summary>
-        /// <param name="id">Identificador de la tarea</param>
-        /// <param name="taskDto">Datos actualizados de la tarea</param>
-        /// <returns>Código de estado HTTP</returns>
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateTask(int id, [FromBody] TaskDto taskDto)
         {
             var existingTask = await _taskService.GetTaskByIdAsync(id);
-            if (existingTask == null) return NotFound();
+            if (existingTask == null)
+                return NotFound(ApiResponse<string>.Fail("Tarea no encontrada", 404));
 
             existingTask.Title = taskDto.Title;
             existingTask.Description = taskDto.Description;
             existingTask.IsCompleted = taskDto.IsCompleted;
 
-            return await _taskService.UpdateTaskAsync(existingTask) ? NoContent() : NotFound();
+            var updated = await _taskService.UpdateTaskAsync(existingTask);
+            return updated
+                ? Ok(new ApiResponse<TaskEntity>(existingTask, "Tarea actualizada exitosamente"))
+                : StatusCode(500, ApiResponse<string>.Fail("Error al actualizar la tarea", 500));
         }
 
         /// <summary>
-        /// Elimina una tarea por su ID.
+        /// Elimina una tarea por ID.
         /// </summary>
-        /// <param name="id">Identificador de la tarea</param>
-        /// <returns>Código de estado HTTP</returns>
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteTask(int id) =>
-            await _taskService.DeleteTaskAsync(id) ? NoContent() : NotFound();
+        public async Task<IActionResult> DeleteTask(int id)
+        {
+            var deleted = await _taskService.DeleteTaskAsync(id);
+            return deleted
+                ? NoContent()
+                : NotFound(ApiResponse<string>.Fail("Tarea no encontrada", 404));
+        }
     }
 }
-

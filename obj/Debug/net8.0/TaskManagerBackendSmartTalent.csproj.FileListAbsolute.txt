@@ -167,3 +167,4 @@
 /Users/jachg/Desktop/Smart-Talent-25006/TaskManagerBackendSmartTalent/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Security.Cryptography.ProtectedData.dll
 /Users/jachg/Desktop/Smart-Talent-25006/TaskManagerBackendSmartTalent/bin/Debug/net8.0/runtimes/browser/lib/net8.0/System.Text.Encodings.Web.dll
 /Users/jachg/Desktop/Smart-Talent-25006/TaskManagerBackendSmartTalent/bin/Debug/net8.0/runtimes/win/lib/net6.0/System.Windows.Extensions.dll
+/Users/jachg/Desktop/Smart-Talent-25006/TaskManagerBackendSmartTalent/obj/Debug/net8.0/TaskManagerBackendSmartTalent.sourcelink.json
